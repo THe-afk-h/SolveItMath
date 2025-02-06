@@ -1,148 +1,139 @@
 from prettytable import PrettyTable
 
 def menu():
-	table = PrettyTable(["No", "Menu"])
-	table.add_row(["1", "Barisan Aritmatika"])
-	table.add_row(["2", "Jika info suku hanya 2"])
-	table.add_row(["3", "Deret Aritmatika"])
-	print(table)
+    table = PrettyTable(["No", "Menu"])
+    table.add_row(["1", "Arithmetic Sequence"])
+    table.add_row(["2", "If only 2 terms info is given"])
+    table.add_row(["3", "Arithmetic Series"])
+    print(table)
 
 menu()
 print("")
-pilih = input("Pilih menu : ")
+choice = input("Select menu: ")
 print("")
 
-def aritmatika1():
-	print("Barisan Aritmatika")
-	print("-------------------------------------")
-	Un = int(input("Masukan Suku ke-n : "))
-	a = int(input("Masukan Suku Pertama :  "))
-	b = int(input("Masukan Bedanya ⏩ (U2-U1) : "))
-	print("Un = a + (n-1)b")
-	print("U{} = {} + ({}-1){}".format(Un, a, Un, b))
-	print("U{} = {} + {}.{}".format(Un, a, Un - 1, b))
-	print("U{} = {} + {}".format(Un, a, (Un - 1) * b))
-	hasilakhir = a + (Un - 1) * b
-	print("U{} = {}".format(Un, hasilakhir))
-	print("")
-	back = str(input("Ketik ('y') jika ingin lihat menu lain : "))
+def arithmetic1():
+    print("Arithmetic Sequence")
+    print("-------------------------------------")
+    Un = int(input("Enter term number (n): "))
+    a = int(input("Enter the first term: "))
+    b = int(input("Enter the common difference ⏩ (U2-U1): "))
+    print("Un = a + (n-1)b")
+    print("U{} = {} + ({}-1){}".format(Un, a, Un, b))
+    print("U{} = {} + {}.{}".format(Un, a, Un - 1, b))
+    print("U{} = {} + {}".format(Un, a, (Un - 1) * b))
+    final_result = a + (Un - 1) * b
+    print("U{} = {}".format(Un, final_result))
+    print("")
+    back = str(input("Type ('y') if you want to see another menu: "))
+    
+    if back == ('y'):
+        menu()
+        choice = int(input("Enter menu number: "))
+    if choice == 1:
+        return arithmetic1()
+    if choice == 2:
+        return arithmetic2()
+    if choice == 3:
+        return arithmetic3()
 
-	if back == ('y'):
-		menu()
-		pilih = int(input("Masukan Nomor Menu : "))
-	if pilih == 1:
-		return aritmatika1()
-	if pilih == 2:
-		return aritmatika2()
-	if pilih == 3:
-		return aritmatika3()
+def arithmetic2():
+    print("------------------------------")
+    term1 = int(input("Enter term number (n): "))
+    print("------------------------------")
+    term2 = int(input("Enter another term number (n): "))
+    print("------------------------------")
+    print("U{} = ".format(term1))
+    print("U{} = ".format(term2))
+    print("-------------------------------------")
+    value1 = int(input("Enter value of U{}: ".format(term1)))
+    print("-------------------------------------")
+    value2 = int(input("Enter value of U{}: ".format(term2)))
+    print("-------------------------------------")
+    print("")
+    
+    print("U{} = {}".format(term1, value1))
+    print("a + {}-1 = {}".format(term1, value1))
+    print("a + {}b = {}".format(term1 - 1, value1))
+    print("")
+    print("U{} = {}".format(term2, value2))
+    print("a + {}-1 = {}".format(term2, value2))
+    print("a + {}b = {}".format(term2 - 1, value2))
+    print("")
+    print("Finding value of b............(Elimination method)")
+    print("")
+    print("a + {}b = {}".format(term2 - 1, value2))
+    print("a + {}b = {}".format(term1 - 1, value1))
+    print("__________________--")
+    print("    {}b = {}".format(value2 - value1, (term2 - 1) - (term1 - 1)))
+    print("      b = ", value2 - value1, "/", (term2 - 1) - (term1 - 1))
+    nb = value2 - value1
+    i21 = (term2 - 1) - (term1 - 1)
+    b_value = int(nb / i21)
+    print("      b = ", (b_value))
+    print("")
+    print("Finding value of a............(Substitution method)")
+    print("a + {}b = {}".format(term1 - 1, value1))
+    print("a + {}.{} = {}".format(term1 - 1, b_value, value1))
+    print(" a +", (term1 - 1) * b_value, "= ", value1)
+    print("     a =", value1, "-", (term1 - 1) * b_value)
+    print("     a =", value1 - (term1 - 1) * b_value)
+    print("")
+    final_term = int(input("Determine term number? : "))
+    final_term1 = final_term - 1
+    a_value = value1 - (term1 - 1) * b_value
+    print("a + ( n - 1 ) b")
+    print(a_value, "+ (", final_term, "- 1 ).", b_value)
+    print(a_value, "+ (", final_term - 1, ").", b_value)
+    print(a_value, "+", final_term1 * b_value)
+    print(a_value + final_term1 * b_value)
+    print("")
+    print("Thus, term number", final_term, "is", a_value + final_term1 * b_value)
+    print("")
+    back = str(input("Type ('y') if you want to see another menu: "))
+    if back == ('y'):
+        menu()
+        choice = int(input("Enter menu number: "))
+    if choice == 1:
+        return arithmetic1()
+    if choice == 2:
+        return arithmetic2()
+    if choice == 3:
+        return arithmetic3()
 
+def arithmetic3():
+    print("")
+    print("Arithmetic Series")
+    print("-------------------------------------")
+    Sn = int(input("Determine the sum of the first n terms: "))
+    print("-------------------------------------")
+    a = int(input("Enter the first term: "))
+    print("-------------------------------------")
+    b = int(input("Enter the common difference ⏩ [calculate U2-U1]: "))
+    print("-------------------------------------")
+    print("")
+    print("Sn = n/2(2a + (n-1)b)")
+    total = int((Sn / 2) * (2 * a + (Sn - 1) * b))
+    print("S{} = {}".format(Sn, total))
+    print("")
+    print("Thus, the sum of the first", Sn, "terms is", total)
+    print("")
+    back = str(input("Type ('y') if you want to see another menu: "))
+    if back == ('y'):
+        menu()
+        choice = int(input("Enter menu number: "))
+    if choice == 1:
+        return arithmetic1()
+    if choice == 2:
+        return arithmetic2()
+    if choice == 3:
+        return arithmetic3()
 
-def aritmatika2():
-	print("------------------------------")
-	info1 = int(input("Masukan Suku ke-n : "))
-	print("------------------------------")
-	info2 = int(input("Masukan Suku ke-n : "))
-	print("------------------------------")
-	print("U{} = ".format(info1))
-	print("U{} = ".format(info2))
-	print("-------------------------------------")
-	hasil1 = int(input("Masukan Nilai U{} : ".format(info1)))
-	print("-------------------------------------")
-	hasil2 = int(input("Masukan Nilai U{} : ".format(info2)))
-	print("-------------------------------------")
-	print("")
-
-	print("U{} = {}".format(info1, hasil1))
-	print("a + {}-1 = {}".format(info1, hasil1))
-	print("a + {}b = {}".format(info1 - 1, hasil1))
-	print("")
-	print("U{} = {}".format(info2, hasil2))
-	print("a + {}-1 = {}".format(info2, hasil2))
-	print("a + {}b = {}".format(info2 - 1, hasil2))
-	print("")
-	print("Mencari Nilai b............(Metode eliminasi)")
-	print("")
-	print("a + {}b = {}".format(info2 - 1, hasil2))
-	print("a + {}b = {}".format(info1 - 1, hasil1))
-	print("__________________--")
-	print("    {}b = {}".format(hasil2 - hasil1, (info2 - 1) - (info1 - 1)))
-	print("      b = ", hasil2 - hasil1, "/", (info2 - 1) - (info1 - 1))
-	nb = hasil2 - hasil1
-	i21 = (info2 - 1) - (info1 - 1)
-	nilaib = int(nb / i21)
-	print("      b = ", (nilaib))
-	print("")
-	print("mencari nilai a............(Metode Substitusi)")
-	print("a + {}b = {}".format(info1 - 1, hasil1))
-	print("a + {}.{} = {}".format(info1 - 1, nilaib, hasil1))
-	print(" a +", (info1 - 1) * nilaib, "= ", hasil1)
-	print("     a =", hasil1, "-", (info1 - 1) * nilaib)
-	print("     a =", hasil1 - (info1 - 1) * nilaib)
-	print("")
-	hasilakhir = int(input("Tentukan Suku ke-? : "))
-	hasilakhir1 = hasilakhir - 1
-	nilaia = hasil1 - (info1 - 1) * nilaib
-	print("a + ( n - 1 ) b")
-	print(nilaia, "+ (", hasilakhir, "- 1 ).", nilaib)
-	print(nilaia, "+ (", hasilakhir - 1, ").", nilaib)
-	print(nilaia, "+", hasilakhir1 * nilaib)
-	print(nilaia + hasilakhir1 * nilaib)
-	print("")
-	print("Maka suku ke -", hasilakhir, "adalah", nilaia + hasilakhir1 * nilaib)
-	print("")
-	back = str(input("Ketik ('y') jika ingin lihat menu lain : "))
-	if back == ('y'):
-		menu()
-		pilih = int(input("Masukan Nomor Menu : "))
-	if pilih == 1:
-		return aritmatika1()
-	if pilih == 2:
-		return aritmatika2()
-	if pilih == 3:
-		return aritmatika3()
-
-
-def aritmatika3():
-	print("")
-	print("Deret Aritmatika")
-	print("-------------------------------------")
-	Sn = int(input("Tentukan jumlah n suku pertama : "))
-	print("-------------------------------------")
-	a = int(input("Masukan suku pertama barisan : "))
-	print("-------------------------------------")
-	b = int(input("beda ⏩ [itung sendiri U2-U1] : "))
-	print("-------------------------------------")
-	print("")
-	print("Sn = n/2(2a + (n-1)b)")
-	print("S{} = {}/2(2.{} + ({}-1)({})".format(Sn, Sn, a, Sn, b))
-	print("S{} = {}({} + {}.({})".format(Sn, Sn / 2, 2 * a, Sn - 1, b))
-	print("S{} = {}({} + {})".format(Sn, Sn / 2, 2 * a, ((Sn - 1) * b)))
-	print("S{} = {}({})".format(Sn, Sn / 2, 2 * a + (Sn - 1) * b))
-	nilaiakhir = int((Sn / 2) * (2 * a + (Sn - 1) * b))
-	print("S{} = {}".format(Sn, nilaiakhir))
-	print("")
-	print("Jadi, Jumlah {} suku pertamanya adalah {}.".format(Sn, nilaiakhir))
-	print("")
-	back = str(input("Ketik ('y') jika ingin lihat menu lain : "))
-	if back == ('y'):
-		menu()
-		pilih = int(input("Masukan Nomor Menu : "))
-	if pilih == 1:
-		return aritmatika1()
-	if pilih == 2:
-		return aritmatika2()
-	if pilih == 3:
-		return aritmatika3()
-
-
-if pilih == ('1'):
-	aritmatika1()
-
-elif pilih == ('2'):
-	aritmatika2()
-
-elif pilih == ('3'):
-	aritmatika3()
+if choice == ('1'):
+    arithmetic1()
+elif choice == ('2'):
+    arithmetic2()
+elif choice == ('3'):
+    arithmetic3()
 else:
-	print("Menu tidak ada")
+    print("Menu not available")
